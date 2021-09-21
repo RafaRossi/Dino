@@ -10,7 +10,7 @@ public class GreenMushroom : Mushroom, ICollectable
     [SerializeField] private float minDistance = 0.1f;
     [SerializeField] private float delayTime = 0.01f;
 
-    public void Collect()
+    public void Collect() // Movimenta o cogumelo assim que próximo até o player, para dar um efeito de atração e deixar mais fácil a coleta.
     {
         StartCoroutine(MoveTowardsPlayer());
 

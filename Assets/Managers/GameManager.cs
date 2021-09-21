@@ -63,20 +63,20 @@ public class GameManager : Manager<GameManager>
         player.enabled = true;
     }
 
-    public void ReachNewCheckPoint(CheckPoint newCheckPoint)
+    public void ReachNewCheckPoint(CheckPoint newCheckPoint) //Chamado toda vez que o jogador atinge um novo check point
     {
         lastCheckPoint = newCheckPoint;
 
         onReacheNewCheckPoint();
     }
 
-    public void PlayerDie()
+    public void PlayerDie() //Função para quando o jogador morre
     {
         isDead = true;
 
         deathCounter++;
 
-        SceneManager.Instance.Fade("Fade Out", timeToRespawn/2);
+        SceneManager.Instance.Fade("Fade Out", timeToRespawn/2); //Chama o fade, com um delay de alguns segundos
 
         StartCoroutine(PlayerDie());
 
@@ -84,24 +84,24 @@ public class GameManager : Manager<GameManager>
         {
             yield return new WaitForSeconds(timeToRespawn);
 
-            onResetItems();
+            onResetItems(); //Reseta o estado de todos os itens coletados após o ultimo check point
             onPlayerDie();
 
-            if (PlayerLifes >= 1)
+            if (PlayerLifes >= 1) //Verifica se o jogador tem vidas sobrando
             {
                 ResetToCheckPoint();
                 PlayerLifes--;
 
                 SceneManager.Instance.Fade(SceneManager.Instance.fadeInAnimation);
             }
-            else
+            else // Se ele morreu sem ter nenhuma vida sobrando, Game Over
             {
                 GameOverManager.Instance.OnGameOver();
             }
         }
     }
 
-    public void LifeUp()
+    public void LifeUp() //Jogador conseguiu 100 cogumelos, recebe uma vida extra
     {
         PlayerLifes++;
         AudioManager.Instance.PlayFX(lifeUp);
@@ -124,7 +124,7 @@ public class GameManager : Manager<GameManager>
 
     public int GetDeathCount() => deathCounter;
 
-    public void RewardVideo()
+    public void RewardVideo() //Dá ao jogador mais uma tentativa caso termine de assistir por inteiro o ad
     {
         ResetToCheckPoint();
         SceneManager.Instance.Fade(SceneManager.Instance.fadeInAnimation);

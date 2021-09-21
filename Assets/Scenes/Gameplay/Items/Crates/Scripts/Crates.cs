@@ -35,6 +35,8 @@ public class Crates : Items, ICollectable
 
     protected override void OnPlayerEnter(CharacterController character, Rigidbody2D rb = null, Collision2D collision = null)
     {
+        //Verifica a direção da colisão do jogador, as caixas só são quebradas se o jogador pular em cima delas, ou dar uma cabeçada por baixo delas, 
+        //assim como nos jogos do Crash. Colidir nos lados, ou até mesmo andar por cima delas sem estar caindo, não as destroem.
         Vector2 normal = collision.GetContact(0).normal;
 
         if (!character.IsGrounded && (normal.normalized == Vector2.up || normal.normalized == Vector2.down))
@@ -51,7 +53,7 @@ public class Crates : Items, ICollectable
             }
             else
             {
-                character.IsGrounded = true;
+                character.IsGrounded = true; //Reseta a variavel, permitindo o jogador realizar mais pulos
             }
             
             rb.AddForce(dir * impulseForce * Time.deltaTime, ForceMode2D.Impulse);
@@ -60,7 +62,7 @@ public class Crates : Items, ICollectable
         }
     }
 
-    private void SpawnDrops()
+    private void SpawnDrops() //Randomiza uma quantidade de cogumelos verdes assim que destruida
     {
         int randomAmount = Random.Range(0, maxPrefabsSpawn+1);
 

@@ -9,9 +9,9 @@ public class MobileButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     public UnityEvent onButtonDown = new UnityEvent();
     public UnityEvent onButonUp = new UnityEvent();
 
+    //Eventos para o botões virtuais
     public void OnPointerDown(PointerEventData eventData)
     {
-        print(name);
         onButtonDown.Invoke();
     }
 

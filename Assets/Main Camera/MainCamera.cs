@@ -13,7 +13,7 @@ public class MainCamera : MonoBehaviour
 
     private Vector3 r_velocity;
 
-    private void FixedUpdate()
+    private void FixedUpdate() //Segue o player, e ao mesmo tempo delimita o espaço onde a camera pode passar
     {
         Vector3 position = transform.position;
 

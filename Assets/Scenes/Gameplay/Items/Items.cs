@@ -52,17 +52,17 @@ public abstract class Items : MonoBehaviour
         LevelManager.Instance.AddItemState(this, GetCurrentState());
     }
 
-    protected virtual void UpdateItemState()
+    protected virtual void UpdateItemState() //Atualiza o estado do item no dicionario, assim, o estado continuará o mesmo caso o jogador morra, não precisando assim coletar o item novamente
     {
         LevelManager.Instance.objectsStates[this] = GetCurrentState();
     }
 
-    protected virtual void ResetItem()
+    protected virtual void ResetItem() //Reseta o item no estado que está salvo no dicionario, chamado principlamente quando o jogador morre. Ou seja, se o jogador tiver coletado um item, mas não tiver atingido um novo check point, o item terá seu estado revertido, e terá q ser coletado novamente.
     {
         ChangeState(LevelManager.Instance.objectsStates[this]);
     }
 
-    public virtual void ChangeState(States state)
+    public virtual void ChangeState(States state) //Altera o estado atual do item, mas ainda não o atualiza no dicionario no LevelManager, o estado só é atualizado quando o jogador atinge um novo check point
     {
         if (GetCurrentState() != state)
         {

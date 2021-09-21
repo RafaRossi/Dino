@@ -65,7 +65,7 @@ public class CharacterController : MonoBehaviour
 		Move();
 	}
 
-	public void SetDirection(float value)
+	public void SetDirection(float value) //Valor da direção é dado pelo input do jogador
     {
 		direction = value;
 	}
@@ -82,22 +82,22 @@ public class CharacterController : MonoBehaviour
 
 		if (rb.velocity.y < 0)
 		{
-			rb.velocity += Vector2.up * Physics2D.gravity.y * (gravityMultiplier - 1) * Time.fixedDeltaTime;
+			rb.velocity += Vector2.up * Physics2D.gravity.y * (gravityMultiplier - 1) * Time.fixedDeltaTime; //Melhoria para fisica de queda do jogador
 		}
 
 		animator.SetFloat("Speed", Mathf.Abs(direction));
 	}
 
-	public void Jump()
+	public void Jump() //Faz o jogador pular, caso esteja no chão, ou não tenha atingido o valor maximo de pulos
     {
 		if ((IsGrounded || jumpCounter < maxJumps))
 		{
-			rb.velocity = Vector2.zero;
+			rb.velocity = Vector2.zero; //Reseta o velocity para que pulos consecutivos não acumulem força e ter controles mais pareceidos com os jogod do Crash 
 
 			IsGrounded = false;
 
 			jumpCounter++;
-			rb.AddForce(new Vector2(0f, jumpForce / (jumpCounter * 1.2f)), ForceMode2D.Impulse);
+			rb.AddForce(new Vector2(0f, jumpForce / (jumpCounter * 1.2f)), ForceMode2D.Impulse); 
 
 			animator.SetTrigger("Jump");
 
@@ -105,7 +105,7 @@ public class CharacterController : MonoBehaviour
 		}
 	}
 
-	public void Die()
+	public void Die() //Bloqueia os inputs enquanto estiver morto
     {
 		animator.SetTrigger("Die");
 
@@ -117,7 +117,7 @@ public class CharacterController : MonoBehaviour
 		gameManager.PlayerDie();
     }
 
-	public void Respawn()
+	public void Respawn() //Reseta o jogador no ultimo check point
     {
 		enabled = true;
 		input.enabled = true;
@@ -129,6 +129,8 @@ public class CharacterController : MonoBehaviour
 
 	private void EndLevel()
     {
+		rb.velocity = Vector2.zero;
+		enabled = false;
 		input.enabled = false;
 	}
 }

@@ -25,7 +25,7 @@ public class SceneManager : Manager<SceneManager>
         StartCoroutine(LoadScene(sceneIndex));
     }
 
-    private IEnumerator LoadScene(int sceneIndex)
+    private IEnumerator LoadScene(int sceneIndex) //Carrega uma cena seguida de fade
     {
         Fade(fadeOutAnimation);
         yield return new WaitForSeconds(Animator.GetCurrentAnimatorStateInfo(0).length);
@@ -38,7 +38,7 @@ public class SceneManager : Manager<SceneManager>
         }
     }
 
-    public void Fade(string fadeAnimation, float animationDelay = 0f)
+    public void Fade(string fadeAnimation, float animationDelay = 0f) //Função para animação de fade
     {
         StartCoroutine(Fade(fadeAnimation, animationDelay));
 

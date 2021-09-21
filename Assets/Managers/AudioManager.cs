@@ -12,6 +12,8 @@ public class AudioManager : Manager<AudioManager>
     [SerializeField] private AudioSource musicPlayer = null;
     [SerializeField] private Sound musicToPlay = null;
 
+    //Funções mais especificas para caso precise adicionar mais funcionalidaade para cada tipo de audio
+
     private void Start()
     {
         PlayMusic(musicToPlay);

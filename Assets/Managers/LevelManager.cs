@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum LevelState
+public enum LevelState //Estado do Level para Analytics
 {
     Started,
     Won,
@@ -13,7 +13,8 @@ public enum LevelState
 
 public class LevelManager : Manager<LevelManager>
 {
-    public Dictionary<Items, States> objectsStates = new Dictionary<Items, States>();
+    public Dictionary<Items, States> objectsStates = new Dictionary<Items, States>(); //Dicionario de todos os itens no nivel, e seus respectivos estados
+                                                                                       //Utilizado principlamente quando o jogador morre.
 
     [Header("Level Info")]
     [SerializeField] private PlayerData data = null;
@@ -21,9 +22,9 @@ public class LevelManager : Manager<LevelManager>
     private float startedTime = 0;
 
     [Header("Crates")]
-    public int maxCratesAmount = 0;
+    public int maxCratesAmount = 0; //Quantidade maxima de caixas disponiveis no nivel, seu valor é setado automaticamente
 
-    private int createsAmount = 0;
+    private int createsAmount = 0; // Propriedade de contagem de quantas caixas o jogador destruiu
     public int CratesAmount {
         get => createsAmount;
 
@@ -36,7 +37,7 @@ public class LevelManager : Manager<LevelManager>
     }
 
     [Header("Mushrooms")]
-    private int greenMushroomsCollected = 0;
+    private int greenMushroomsCollected = 0; //Contador de cogumelos verdes que o jogador coletou, chegando na quantidade maxima (const maxGreenMushroom), zera-se a contagem e ganha uma vida extra
     public int GreenMushroomsCollected
     {
         get => greenMushroomsCollected;
@@ -57,7 +58,7 @@ public class LevelManager : Manager<LevelManager>
 
     public const int maxGreenMushroom = 100;
 
-    private YellowMushroom yellowMushroom = null;
+    private YellowMushroom yellowMushroom = null; //Referencia de objeto do cogumelo amarelo, unico por nivel. Refencia ao objeto em si para caso queira-se adicionar mais funcionalidades que dependam da classe no futuro.
     public YellowMushroom YellowMushroomCollected 
     { 
         get => yellowMushroom; 
@@ -85,10 +86,10 @@ public class LevelManager : Manager<LevelManager>
 
     public void AddItemState(Items item, States state)
     {
-        objectsStates.Add(item, state);
+        objectsStates.Add(item, state);//Adiciona um item e seu estado inicial na lista de itens
     }
 
-    private List<T> FindAllItemsOfType<T>() where T : Items
+    private List<T> FindAllItemsOfType<T>() where T : Items //Procura todos os itens de um determinado tipo nas chaves do dicionario, depois retorna os itens encontrados como uma lista.
     {
         List<Items> returnedList = new List<Items>(objectsStates.Keys);
         return returnedList.FindAll(item => item is T).ConvertAll(item => (T)item);
@@ -104,7 +105,7 @@ public class LevelManager : Manager<LevelManager>
         CratesAmount++;
     }
 
-    public void ResetCrateAmount()
+    public void ResetCrateAmount() //Procura todas as caixas no dicionario, e ve quais delas estão com os estados como coletados, retorna a quantidade encontrada. Usado quando o player morre e tem que resetar as caixas que foram coletadas, mas não tiveram seu estado atualizado no dicionario.
     {
         var allCrates = FindAllItemsOfType<Crates>();
 
@@ -116,7 +117,7 @@ public class LevelManager : Manager<LevelManager>
         GreenMushroomsCollected++;
     }
 
-    public void SavePlayerData()
+    public void SavePlayerData() //Salva as informações do jogador no level para a tela de pontuação e analytics
     {
         data.cratesBroken = CratesAmount;
         data.maxCrates = maxCratesAmount;
