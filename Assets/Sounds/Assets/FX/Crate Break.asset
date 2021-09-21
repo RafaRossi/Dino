@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 326a5b6dc3f8acf42a9bcc456319bd03, type: 3}
+  m_Name: Crate Break
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 40ad4719246b19949a571d5e9c594280, type: 3}
+  - {fileID: 8300000, guid: 82ae238ce65b8aa408129c835c3895db, type: 3}
+  - {fileID: 8300000, guid: 76d9a0ac1778fc241925644071f46e73, type: 3}
+  - {fileID: 8300000, guid: daf7eeab1db805d4284be3f95ea2402d, type: 3}
+  - {fileID: 8300000, guid: f9eae5ca6c92444459dee3772c8561da, type: 3}
+  - {fileID: 8300000, guid: c295fb5059eab3b4da78ed9953e0701f, type: 3}
+  volume: 0.6
