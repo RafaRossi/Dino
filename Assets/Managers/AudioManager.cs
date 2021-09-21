@@ -1,26 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : Manager<AudioManager>
 {
+    [Header("FX Options")]
     [SerializeField] private AudioSource fxPlayer = null;
+
+    [Header("Music Options")]
     [SerializeField] private AudioSource musicPlayer = null;
+    [SerializeField] private Sound musicToPlay = null;
 
-    protected override void Initialize()
+    private void Start()
     {
-        base.Initialize();
+        PlayMusic(musicToPlay);
+    }
 
-        Instance = this;
+    public void StopMusic()
+    {
+        musicPlayer.Stop();
+    }
 
-        DontDestroyOnLoad(gameObject);
+    public void StopFX()
+    {
+        fxPlayer.Stop();
     }
 
     public void PlayFX(Sound sound)
     {
         if (sound != null)
         {
-            PlaySound(fxPlayer, sound);
+            fxPlayer.loop = sound.loop;
+            fxPlayer.PlayOneShot(sound.clips[Random.Range(0, sound.clips.Count)]);
         }
     }
 
@@ -28,13 +40,10 @@ public class AudioManager : Manager<AudioManager>
     {
         if (sound != null)
         {
-            PlaySound(musicPlayer, sound);
-        }
-    }
+            musicToPlay.loop = sound.loop;
+            musicPlayer.clip = sound.clips[Random.Range(0, sound.clips.Count)];
 
-    private void PlaySound(AudioSource source, Sound sound)
-    {
-        source.PlayOneShot(sound.clips[Random.Range(0, sound.clips.Count)]);
-        source.volume = sound.volume;
+            musicPlayer.Play();
+        }
     }
 }

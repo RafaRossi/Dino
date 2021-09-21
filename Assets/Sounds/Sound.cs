@@ -6,5 +6,5 @@ using UnityEngine;
 public class Sound : ScriptableObject
 {
     public List<AudioClip> clips = new List<AudioClip>();
-    [Range(0, 1)] public float volume;
+    public bool loop = false;
 }

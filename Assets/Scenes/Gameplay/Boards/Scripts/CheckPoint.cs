@@ -22,12 +22,14 @@ public class CheckPoint : Board
 {
     [SerializeField] private Transform spawnPoint = null;
     [SerializeField] private Collider2D _collider = null;
+    [SerializeField] private Animator animator = null;
 
     public override void OnPlayerEnter(CharacterController character)
     {
         base.OnPlayerEnter();
         GameManager.Instance.ReachNewCheckPoint(this);
 
+        animator.SetTrigger("CheckPointReached");
         _collider.enabled = false;
     }
 

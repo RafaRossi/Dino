@@ -19,7 +19,7 @@ public class ScoreScreen : MonoBehaviour
 
     [SerializeField] private TMP_Text timeTakenText = null;
 
-    [SerializeField] private Sound uiSoundButton;
+    [SerializeField] private Sound uiSoundButton = null;
 
     private void Start()
     {

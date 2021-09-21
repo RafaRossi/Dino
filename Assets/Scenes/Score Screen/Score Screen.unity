@@ -803,6 +803,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Audio Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 2061988195681284472, guid: 181a4f361681ef94fba5823e27081137,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061988195681284472, guid: 181a4f361681ef94fba5823e27081137,
+        type: 3}
+      propertyPath: BypassReverbZones
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061988195681284472, guid: 181a4f361681ef94fba5823e27081137,
+        type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4827983199827649220, guid: 181a4f361681ef94fba5823e27081137,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -857,6 +872,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6671789589194054198, guid: 181a4f361681ef94fba5823e27081137,
+        type: 3}
+      propertyPath: musicToPlay
+      value: 
+      objectReference: {fileID: 11400000, guid: 97690a1217ccb064891bde58b6bb9c63,
+        type: 2}
+    - target: {fileID: 6671789589194054198, guid: 181a4f361681ef94fba5823e27081137,
+        type: 3}
+      propertyPath: fadeMusicSpeed
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 181a4f361681ef94fba5823e27081137, type: 3}

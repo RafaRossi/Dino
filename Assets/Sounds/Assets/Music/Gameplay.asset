@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 326a5b6dc3f8acf42a9bcc456319bd03, type: 3}
-  m_Name: Music
+  m_Name: Gameplay
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 0252241706b9c6346b5990b77e41d06c, type: 3}
-  volume: 0.5
+  - {fileID: 8300000, guid: 73681e7af7ef8794f8a1db5f784d725e, type: 3}
+  loop: 1

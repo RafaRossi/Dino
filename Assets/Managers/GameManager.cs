@@ -52,6 +52,9 @@ public class GameManager : Manager<GameManager>
     public delegate void WatchAdCallBack();
     public WatchAdCallBack onWatchRewardedVideo;
 
+    [Header("Pause Options")]
+    [SerializeField] private GameObject pauseMenu = null;
+
     private void Start()
     {
         AnalyticsManager.ReportLevelState(LevelState.Started);
@@ -130,5 +133,12 @@ public class GameManager : Manager<GameManager>
         SceneManager.Instance.Fade(SceneManager.Instance.fadeInAnimation);
 
         onWatchRewardedVideo();
+    }
+
+    public void Pause(bool pause)
+    {
+        pauseMenu.SetActive(pause);
+
+        Time.timeScale = pause ? 0 : 1;
     }
 }
