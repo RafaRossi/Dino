@@ -10,8 +10,8 @@ public enum InputType
 
 public class PlayerActions : MonoBehaviour //Desativa os inputs de teclado/mouse etc caso o jogo esteja rodando em dispositivos mobile
 {                                           //Script para controlar os inputs do jogador
-    #if UNITY_EDITOR
-        InputType type = InputType.Platform;
+#if UNITY_EDITOR
+    InputType type = InputType.Platform;
     #elif UNITY_ANDROID || UNITY_IOS
         InputType type = InputType.Mobile;
     #else
