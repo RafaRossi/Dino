@@ -82,12 +82,10 @@ public class GameManager : Manager<GameManager>
 
         IEnumerator PlayerDie()
         {
-
             yield return new WaitForSeconds(timeToRespawn);
 
             onResetItems();
             onPlayerDie();
-
 
             if (PlayerLifes >= 1)
             {
@@ -111,7 +109,6 @@ public class GameManager : Manager<GameManager>
 
     private void ResetToCheckPoint()
     {
-        player.enabled = true;
         player.Respawn();
     }
 

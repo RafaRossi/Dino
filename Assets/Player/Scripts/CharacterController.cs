@@ -10,7 +10,7 @@ public class CharacterController : MonoBehaviour
 	[Header("Player Components")]
 	[SerializeField] private Animator animator = default;
 	[SerializeField] private Rigidbody2D rb = default;
-	[SerializeField] private PlayerInput input = default;
+	[SerializeField] private PlayerActions input = default;
 
 	[Header("Movement")]
 	[SerializeField] private float movementSpeed = 10f;
@@ -49,6 +49,7 @@ public class CharacterController : MonoBehaviour
 	private void Awake()
 	{
 		rb = GetComponent<Rigidbody2D>();
+		input = GetComponent<PlayerActions>();
 		gameManager = GameManager.Instance;
 	}
 
@@ -63,11 +64,6 @@ public class CharacterController : MonoBehaviour
 
 		Move();
 	}
-
-	public void SetMoveDirection(InputAction.CallbackContext value)
-    {
-		SetDirection(value.ReadValue<float>());
-    }
 
 	public void SetDirection(float value)
     {
@@ -92,14 +88,6 @@ public class CharacterController : MonoBehaviour
 		animator.SetFloat("Speed", Mathf.Abs(direction));
 	}
 
-	public void Jump(InputAction.CallbackContext value)
-    {
-		if(value.started)
-        {
-			Jump();
-        }
-    }
-
 	public void Jump()
     {
 		if ((IsGrounded || jumpCounter < maxJumps))
@@ -120,7 +108,9 @@ public class CharacterController : MonoBehaviour
 	public void Die()
     {
 		animator.SetTrigger("Die");
+
 		enabled = false;
+		input.enabled = false;
 
 		rb.velocity = Vector2.zero;
 
@@ -129,6 +119,8 @@ public class CharacterController : MonoBehaviour
 
 	public void Respawn()
     {
+		enabled = true;
+		input.enabled = true;
 		transform.SetPositionAndRotation(gameManager.GetLastCheckPointPosition(), Quaternion.identity);
 		gameManager.isDead = false;
 
